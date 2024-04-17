@@ -25,12 +25,12 @@ public class Main {
                 case 1:
                     System.out.println("Lendo o arquivo CSV...");
                     itemList = CSVLeitor.readCSV();
-                    arquivoLido = true;
                     System.out.println("Arquivo lido com sucesso.");
                     exibirItens(itemList);
                     break;
                 case 2:
-                    if (arquivoLido) {
+                    if (true) {
+                        itemList = CSVLeitor.readCSV();
                         System.out.println("Ordenando por categoria (ordem alfabética) usando BubbleSort...");
                         ordenarPorCategoria(itemList);
                         exibirItensOrdenados(itemList);
@@ -41,7 +41,8 @@ public class Main {
                     }
                     break;
                 case 3:
-                    if (arquivoLido) {
+                    if (true) {
+                        itemList = CSVLeitor.readCSV();
                         System.out.println("Ordenando por avaliação (ordem decrescente) dentro de cada categoria usando SelectionSort...");
                         ordenarPorAvaliacao(itemList);
                         exibirItensOrdenados(itemList);
@@ -100,18 +101,14 @@ public class Main {
     private static void ordenarPorAvaliacao(List<Item> itemList) {
         int tamanhoListaJogos = itemList.size();
         for (int i = 0; i < tamanhoListaJogos - 1; i++) {
-            int index = i;
-            for (int j = i + 1; j < tamanhoListaJogos; j++) {
-                if (itemList.get(j).getCategoria().equals(itemList.get(index).getCategoria())) {
-                  if (itemList.get(j).getAvaliacao() < itemList.get(index).getAvaliacao()) {
-                      index = j;
-                  }
-              }
-            }
-            if (index != i) {
-                Item temp = itemList.get(index);
-                itemList.set(index, itemList.get(i));
-                itemList.set(i, temp);
+            for (int j = 0; j < tamanhoListaJogos - i - 1; j++) {
+                int categoriaComparacao = itemList.get(j).getCategoria().compareTo(itemList.get(j + 1).getCategoria());
+                if (categoriaComparacao > 0 || (categoriaComparacao == 0 
+                        && itemList.get(j).getAvaliacao() < itemList.get(j + 1).getAvaliacao())) {
+                    Item temp = itemList.get(j);
+                    itemList.set(j, itemList.get(j + 1));
+                    itemList.set(j + 1, temp);
+                }
             }
         }
     }
