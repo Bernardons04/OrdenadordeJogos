@@ -97,22 +97,21 @@ public class Main {
         }
     }
 
-    private static void ordenarPorAvaliacao(List<Item> itemList) {      // selection  
-        Collections.sort(itemList, Comparator.comparing(Item::getCategoria));
+    private static void ordenarPorAvaliacao(List<Item> itemList) {
         int tamanhoListaJogos = itemList.size();
         for (int i = 0; i < tamanhoListaJogos - 1; i++) {
-            if (!itemList.get(i).getCategoria().equals(itemList.get(i + 1).getCategoria())) {
-                continue;
-            }
-            int maxIndex = i;
+            int index = i;
             for (int j = i + 1; j < tamanhoListaJogos; j++) {
-                if (itemList.get(j).getCategoria().equals(itemList.get(i).getCategoria())
-                        && itemList.get(j).getAvaliacao() > itemList.get(maxIndex).getAvaliacao()) {
-                    maxIndex = j;
-                }
+                if (itemList.get(j).getCategoria().equals(itemList.get(index).getCategoria())) {
+                  if (itemList.get(j).getAvaliacao() < itemList.get(index).getAvaliacao()) {
+                      index = j;
+                  }
+              }
             }
-            if (maxIndex != i) {
-                Collections.swap(itemList, i, maxIndex);
+            if (index != i) {
+                Item temp = itemList.get(index);
+                itemList.set(index, itemList.get(i));
+                itemList.set(i, temp);
             }
         }
     }
