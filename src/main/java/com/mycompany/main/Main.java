@@ -4,8 +4,6 @@ import packageLeitor.CSVLeitor;
 import com.mycompany.main.Item;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -25,12 +23,12 @@ public class Main {
                 case 1:
                     System.out.println("Lendo o arquivo CSV...");
                     itemList = CSVLeitor.readCSV();
-                    arquivoLido = true;
                     System.out.println("Arquivo lido com sucesso.");
                     exibirItens(itemList);
                     break;
                 case 2:
-                    if (arquivoLido) {
+                    if (true) {
+                        itemList = CSVLeitor.readCSV();
                         System.out.println("Ordenando por categoria (ordem alfabética) usando BubbleSort...");
                         ordenarPorCategoria(itemList);
                         exibirItensOrdenados(itemList);
@@ -41,7 +39,8 @@ public class Main {
                     }
                     break;
                 case 3:
-                    if (arquivoLido) {
+                    if (true) {
+                        itemList = CSVLeitor.readCSV();
                         System.out.println("Ordenando por avaliação (ordem decrescente) dentro de cada categoria usando SelectionSort...");
                         ordenarPorAvaliacao(itemList);
                         exibirItensOrdenados(itemList);
@@ -91,28 +90,25 @@ public class Main {
         for (int i = 0; i < tamanhoListaJogos - 1; i++) {
             for (int j = 0; j < tamanhoListaJogos - i - 1; j++) {
                 if (itemList.get(j).getCategoria().compareTo(itemList.get(j + 1).getCategoria()) > 0) {
-                    Collections.swap(itemList, j, j + 1);
+                    Item temp = itemList.get(j);
+                    itemList.set(j, itemList.get(j + 1));
+                    itemList.set(j + 1, temp);
                 }
             }
         }
     }
 
-    private static void ordenarPorAvaliacao(List<Item> itemList) {      // selection  
-        Collections.sort(itemList, Comparator.comparing(Item::getCategoria));
+    private static void ordenarPorAvaliacao(List<Item> itemList) {
         int tamanhoListaJogos = itemList.size();
         for (int i = 0; i < tamanhoListaJogos - 1; i++) {
-            if (!itemList.get(i).getCategoria().equals(itemList.get(i + 1).getCategoria())) {
-                continue;
-            }
-            int maxIndex = i;
-            for (int j = i + 1; j < tamanhoListaJogos; j++) {
-                if (itemList.get(j).getCategoria().equals(itemList.get(i).getCategoria())
-                        && itemList.get(j).getAvaliacao() > itemList.get(maxIndex).getAvaliacao()) {
-                    maxIndex = j;
+            for (int j = 0; j < tamanhoListaJogos - i - 1; j++) {
+                int categoriaComparacao = itemList.get(j).getCategoria().compareTo(itemList.get(j + 1).getCategoria());
+                if (categoriaComparacao > 0 || (categoriaComparacao == 0 
+                        && itemList.get(j).getAvaliacao() < itemList.get(j + 1).getAvaliacao())) {
+                    Item temp = itemList.get(j);
+                    itemList.set(j, itemList.get(j + 1));
+                    itemList.set(j + 1, temp);
                 }
-            }
-            if (maxIndex != i) {
-                Collections.swap(itemList, i, maxIndex);
             }
         }
     }

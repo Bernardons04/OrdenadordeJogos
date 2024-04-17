@@ -45,7 +45,14 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Jogo: " + jogos + ", Categoria: " + categoria + ", Avaliacao: " + avaliacao;
+        return "Jogo: " + jogos + ", Categoria: " + 
+                categoria + ", Avaliacao: " + avaliacao;
     }
 }
+
+
+
+
+
+
 
