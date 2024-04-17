@@ -8,7 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CSVLeitor {
-    private static final String path = "./src/main/java/packageLeitor/JogosDesordenados.csv";
+    private static final String path = 
+            "./src/main/java/packageLeitor/JogosDesordenados.csv";
 
     public static List<Item> readCSV() {
         List<Item> itemList = new ArrayList<>();

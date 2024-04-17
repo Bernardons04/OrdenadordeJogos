@@ -85,7 +85,7 @@ public class Main {
         }
     }
 
-    private static void ordenarPorCategoria(List<Item> itemList) { //bubble
+    private static void ordenarPorCategoria(List<Item> itemList) {
         int tamanhoListaJogos = itemList.size();
         for (int i = 0; i < tamanhoListaJogos - 1; i++) {
             for (int j = 0; j < tamanhoListaJogos - i - 1; j++) {
