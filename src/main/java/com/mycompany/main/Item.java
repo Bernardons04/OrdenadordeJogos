@@ -41,10 +41,3 @@ public class Item {
                 categoria + ", Avaliacao: " + avaliacao;
     }
 }
-
-
-
-
-
-
-

@@ -27,28 +27,22 @@ public class Main {
                     exibirItens(itemList);
                     break;
                 case 2:
-                    if (true) {
-                        itemList = CSVLeitor.readCSV();
-                        System.out.println("Ordenando por categoria (ordem alfabética) usando BubbleSort...");
-                        ordenarPorCategoria(itemList);
-                        exibirItensOrdenados(itemList);
-                        salvarArquivoCSV("JogosOrdenadosporCategoria.csv", itemList);
-                        System.out.println("Itens ordenados salvos em 'JogosOrdenadosporCategoria.csv'.");
-                    } else {
-                        System.out.println("Erro: o arquivo ainda não foi lido. Primeiro, leia o arquivo.");
-                    }
+                    itemList = CSVLeitor.readCSV();
+                    System.out.println("Ordenando por categoria (ordem alfabética) usando BubbleSort...");
+                    ordenarPorCategoria(itemList);
+                    exibirItensOrdenados(itemList);
+                    salvarArquivoCSV("JogosOrdenadosporCategoria.csv", itemList);
+                    System.out.println("Itens ordenados salvos em 'JogosOrdenadosporCategoria.csv'.");
+
                     break;
                 case 3:
-                    if (true) {
-                        itemList = CSVLeitor.readCSV();
-                        System.out.println("Ordenando por avaliação (ordem decrescente) dentro de cada categoria usando SelectionSort...");
-                        ordenarPorAvaliacao(itemList);
-                        exibirItensOrdenados(itemList);
-                        salvarArquivoCSV("JogosOrdenadosporAvaliacao.csv", itemList);
-                        System.out.println("Itens ordenados por avaliação salvos em 'JogosOrdenadosporAvaliacao.csv'.");
-                    } else {
-                        System.out.println("Erro: o arquivo ainda não foi lido. Primeiro, leia o arquivo.");
-                    }
+                    itemList = CSVLeitor.readCSV();
+                    System.out.println("Ordenando por avaliação (ordem decrescente) dentro de cada categoria usando SelectionSort...");
+                    ordenarPorAvaliacao(itemList);
+                    exibirItensOrdenados(itemList);
+                    salvarArquivoCSV("JogosOrdenadosporAvaliacao.csv", itemList);
+                    System.out.println("Itens ordenados por avaliação salvos em 'JogosOrdenadosporAvaliacao.csv'.");
+
                     break;
                 case 4:
                     System.out.println("Saindo do programa. Obrigado por utilizar!");
@@ -103,7 +97,7 @@ public class Main {
         for (int i = 0; i < tamanhoListaJogos - 1; i++) {
             for (int j = 0; j < tamanhoListaJogos - i - 1; j++) {
                 int categoriaComparacao = itemList.get(j).getCategoria().compareTo(itemList.get(j + 1).getCategoria());
-                if (categoriaComparacao > 0 || (categoriaComparacao == 0 
+                if (categoriaComparacao > 0 || (categoriaComparacao == 0
                         && itemList.get(j).getAvaliacao() < itemList.get(j + 1).getAvaliacao())) {
                     Item temp = itemList.get(j);
                     itemList.set(j, itemList.get(j + 1));
