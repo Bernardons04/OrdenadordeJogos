@@ -33,7 +33,6 @@ public class Main {
                     exibirItensOrdenados(itemList);
                     salvarArquivoCSV("JogosOrdenadosporCategoria.csv", itemList);
                     System.out.println("Itens ordenados salvos em 'JogosOrdenadosporCategoria.csv'.");
-
                     break;
                 case 3:
                     itemList = CSVLeitor.readCSV();
@@ -42,7 +41,6 @@ public class Main {
                     exibirItensOrdenados(itemList);
                     salvarArquivoCSV("JogosOrdenadosporAvaliacao.csv", itemList);
                     System.out.println("Itens ordenados por avaliação salvos em 'JogosOrdenadosporAvaliacao.csv'.");
-
                     break;
                 case 4:
                     System.out.println("Saindo do programa. Obrigado por utilizar!");
